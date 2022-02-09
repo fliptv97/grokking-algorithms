@@ -1,24 +1,31 @@
 import { Queue, Graph } from '../data-sctructures/index.js';
 
+// https://en.wikipedia.org/wiki/Breadth-first_search
 export function breadthFirstSearch(graph, source, compareFn) {
   const queue = new Queue();
-  const checked = [];
+  const visited = [source];
 
-  queue.enqueue(...graph.getNeighbors(source));
+  queue.enqueue(source);
 
   while (!queue.isEmpty()) {
-    const value = queue.dequeue();
+    const node = queue.dequeue();
 
-    if (checked.includes(value)) continue;
-
-    if (compareFn(value)) {
-      return value;
+    if (compareFn(node)) {
+      return node;
     }
 
-    checked.push(value);
+    const neighbors = graph.getNeighbors(node);
 
-    queue.enqueue(...graph.getNeighbors(value));
+    for (const neighbor of neighbors) {
+      if (!visited.includes(neighbor)) {
+        visited.push(neighbor);
+
+        queue.enqueue(neighbor);
+      }
+    }
   }
+
+  return false;
 }
 
 const graph = new Graph(

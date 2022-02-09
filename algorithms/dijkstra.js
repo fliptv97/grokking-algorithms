@@ -1,14 +1,15 @@
 import { Graph } from '../data-sctructures/index.js';
 
+// https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm
 export function dijkstra(graph, source) {
   const visited = [];
 
   const distance = {};
-  const previous = {};
+  const predecessor = {};
 
   for (const vertice of graph.vertices) {
     distance[vertice] = Infinity;
-    previous[vertice] = null;
+    predecessor[vertice] = null;
   }
 
   distance[source] = 0;
@@ -28,7 +29,7 @@ export function dijkstra(graph, source) {
 
       if (distance[node] + weight < distance[neighbor]) {
         distance[neighbor] = distance[node] + weight;
-        previous[neighbor] = node;
+        predecessor[neighbor] = node;
       }
     }
 
@@ -51,7 +52,7 @@ export function dijkstra(graph, source) {
     node = minNode;
   }
 
-  return { distance, previous };
+  return { distance, predecessor };
 }
 
 const graph = new Graph(
@@ -65,7 +66,7 @@ const graph = new Graph(
   ]
 );
 
-const { distance, previous } = dijkstra(graph, 'start');
+const { distance, predecessor } = dijkstra(graph, 'start');
 
 console.log(distance);
-console.log(previous);
+console.log(predecessor);

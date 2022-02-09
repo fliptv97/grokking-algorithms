@@ -1,19 +1,13 @@
+// https://en.wikipedia.org/wiki/Selection_sort
 export function selectionSort(arr) {
-  const result = [];
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[j] < arr[i]) {
+        const temp = arr[i];
 
-  for (let i = 0, slice = arr.slice(); i < arr.length; i++) { 
-    let indexOfSmallest = 0;
-
-    for (let j = 0; j < slice.length; j++) {
-      if (slice[j] < slice[indexOfSmallest]) {
-        indexOfSmallest = j;
+        arr[i] = arr[j];
+        arr[j] = temp;
       }
     }
-
-    result.push(slice[indexOfSmallest]);
-
-    slice = slice.filter((_, index) => index !== indexOfSmallest);
   }
-
-  return result;
 }

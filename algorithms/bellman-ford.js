@@ -1,5 +1,6 @@
 import { Graph } from '../data-sctructures/graph.js';
 
+// https://en.wikipedia.org/wiki/Bellman%E2%80%93Ford_algorithm
 export function bellmanFord(graph, source) {
   const distance = {};
   const predecessor = {};

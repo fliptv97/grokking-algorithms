@@ -1,21 +1,22 @@
-export function binarySearch(arr, item) {
+// https://en.wikipedia.org/wiki/Binary_search_algorithm
+export function binarySearch(arr, target) {
   if (arr.length === 0) return null;
-  if (arr.length === 1) return arr[0] === item;
+  if (arr.length === 1) return arr[0] === target;
 
-  let low = 0;
-  let high = arr.length - 1;
+  let left = 0;
+  let right = arr.length - 1;
 
-  while (low <= high) {
-    const mid = Math.round((low + high) / 2);
+  while (left <= right) {
+    const middle = Math.floor((left + right) / 2);
 
-    if (arr[mid] === item) {
-      return mid;
+    if (arr[middle] === target) {
+      return middle;
     }
 
-    if (arr[mid] > item) {
-      high = mid - 1;
+    if (arr[middle] > target) {
+      right = middle - 1;
     } else {
-      low = mid + 1;
+      left = middle + 1;
     }
   }
 
