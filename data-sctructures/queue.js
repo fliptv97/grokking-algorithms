@@ -1,3 +1,5 @@
+import { isNumber, inRange } from '../utils/index.js';
+
 export class Queue {
   #value = [];
 
